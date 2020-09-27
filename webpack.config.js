@@ -4,6 +4,9 @@ const modules = fs.readdirSync(path.resolve(__dirname, "./module"));
 const HtmlWebpcKPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
+const txtWebpackPlugin = require("./myPlugins/txt-webpack-plugin");
+const fileWebpackPlugin = require("./myPlugins/file-webpack-plugin");
+
 function setMpa(modules = []) {
   const entries = {};
   const htmlPs = [];
@@ -45,5 +48,10 @@ module.exports = {
       },
     ],
   },
-  plugins: [...htmlPs, new CleanWebpackPlugin()],
+  plugins: [
+    ...htmlPs,
+    new CleanWebpackPlugin(),
+    new txtWebpackPlugin({ name: "joe" }),
+    new fileWebpackPlugin(),
+  ],
 };
